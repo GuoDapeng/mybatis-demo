@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="icu.guodapeng.mybatisdemo.domain.mapper.UserMapper">
+    <resultMap id="UserAndRolesResultMap" type="icu.guodapeng.mybatisdemo.domain.entity.UserBase">
+        <id property="id" column="id"/>
+        <!-- 传递多列值 column="{column1=key1,column2=key2}" -->
+        <!-- 延迟加载   fetchType="lazy" -->
+        <collection property="roles" column="id" fetchType="lazy"
+                    ofType="icu.guodapeng.user.domain.entity.Role"
+                    select="listUserRoles"/>
+    </resultMap>
+    <select id="getUserAndRolesLazyLoading" resultMap="UserAndRolesResultMap">
+        select *
+        from user_base
+        where account = #{account}
+    </select>
+    <select id="listUserRoles" resultType="icu.guodapeng.mybatisdemo.domain.entity.Role">
+        select *
+        from role
+        where id in (select roles_id from user_roles where user_id = #{id})
+    </select>
+</mapper>
