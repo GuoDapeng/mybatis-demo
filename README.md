@@ -4,6 +4,18 @@
 
 这是一个测试 mybatis 的项目。
 
+`application.properties` `lazy-loading-enabled=true` results in an error
+
+```
+nested exception is org.apache.ibatis.executor.ExecutorException: Error creating lazy proxy.  Cause: java.lang.RuntimeException: icu.guodapeng.mybatisdemo.domain.entity.UserBase is final
+org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.executor.ExecutorException: Error creating lazy proxy.  Cause: java.lang.RuntimeException: icu.guodapeng.mybatisdemo.domain.entity.UserBase is final
+	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:96)
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:441)
+	...
+```
+
+[Test](./src/test/kotlin/icu/guodapeng/mybatisdemo/domain/UserRolesTests.kt)
+
 # 延伸阅读
 
 [mybatis](https://mybatis.org/mybatis-3/zh/)
