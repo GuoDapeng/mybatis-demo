@@ -16,5 +16,5 @@ data class UserBase(
     var update_time: Long? = null,
     var status: Int? = null,
 
-    var roles: List<UserRoles>? = null
+    var roles: List<Role>? = null
 )

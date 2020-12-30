@@ -36,20 +36,22 @@ class UserRolesTests {
             )
         )
 
-        val roleId = snowflake.next()
-        roleMapper.insert(
-            Role(
-                id = roleId,
-                role = "role_${snowflake.next()}"
+        for (i in 1..2) {
+            val roleId = snowflake.next()
+            roleMapper.insert(
+                Role(
+                    id = roleId,
+                    role = "role_${snowflake.next()}"
+                )
             )
-        )
 
-        userRolesMapper.insert(
-            UserRoles(
-                user_id = userId,
-                roles_id = roleId
+            userRolesMapper.insert(
+                UserRoles(
+                    user_id = userId,
+                    roles_id = roleId
+                )
             )
-        )
+        }
 
         val user = userMapper.getUserAndRolesLazyLoading(account)
         Thread.sleep(3)
