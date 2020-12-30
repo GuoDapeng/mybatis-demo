@@ -1,5 +1,6 @@
 package icu.guodapeng.mybatisdemo.domain.mapper
 
+import icu.guodapeng.mybatisdemo.domain.entity.Role
 import icu.guodapeng.mybatisdemo.domain.entity.UserBase
 import org.apache.ibatis.annotations.Insert
 import org.apache.ibatis.annotations.Mapper
@@ -11,4 +12,5 @@ interface UserMapper {
     fun insert(userBase: UserBase)
 
     fun getUserAndRolesLazyLoading(@Param("account") account: String): UserBase
+    fun findRoleById(@Param("id") id: Long): List<Role>
 }

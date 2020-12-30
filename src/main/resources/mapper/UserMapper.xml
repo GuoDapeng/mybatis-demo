@@ -5,19 +5,21 @@
 <mapper namespace="icu.guodapeng.mybatisdemo.domain.mapper.UserMapper">
     <resultMap id="UserAndRolesResultMap" type="icu.guodapeng.mybatisdemo.domain.entity.UserBase">
         <id property="id" column="id"/>
-        <!-- 传递多列值 column="{column1=key1,column2=key2}" -->
-        <!-- 延迟加载   fetchType="lazy" -->
+        <!-- 传递多列 column="{column1=key1,column2=key2}" -->
+        <!-- 延迟加载 fetchType="lazy" -->
         <!-- TODO: fetchType="lazy" Lead to problems: Error creating lazy proxy -->
-        <collection property="roles" column="id" fetchType="lazy"
-                    ofType="icu.guodapeng.mybatisdemo.domain.entity.Role"
-                    select="findRoleById"/>
+        <collection property="roles" column="id" select="findRoleById"
+                    ofType="icu.guodapeng.mybatisdemo.domain.entity.Role"/>
     </resultMap>
     <select id="getUserAndRolesLazyLoading" resultMap="UserAndRolesResultMap">
         select *
         from user_base
         where account = #{account}
     </select>
-    <select id="findRoleById" resultType="icu.guodapeng.mybatisdemo.domain.entity.Role">
+    <resultMap id="RoleResultMap" type="icu.guodapeng.mybatisdemo.domain.entity.Role">
+        <id property="id" column="id"/>
+    </resultMap>
+    <select id="findRoleById" resultMap="RoleResultMap">
         select *
         from role
         where id in (select roles_id from user_roles where user_id = #{id})
