@@ -35,3 +35,5 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 我不认识这个文章的作者，但是受到了他的帮助。
 
 [kotlin 数据类 noarg和allopen插件的使用](https://blog.csdn.net/mp624183768/article/details/106822144/)
+
+[kotlin All-open compiler plugin](https://kotlinlang.org/docs/reference/compiler-plugins.html#all-open-compiler-plugin)
