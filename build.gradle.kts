@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "2.3.7.RELEASE"
     id("io.spring.dependency-management") version "1.0.10.RELEASE"
+    id("org.jetbrains.kotlin.plugin.allopen") version "1.3.72"
     kotlin("jvm") version "1.3.72"
     kotlin("plugin.spring") version "1.3.72"
 }
@@ -13,6 +14,10 @@ java.sourceCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
+}
+
+allOpen {
+    annotation("icu.guodapeng.mybatisdemo.annotations.PoKo")
 }
 
 dependencies {

@@ -1,5 +1,8 @@
 package icu.guodapeng.mybatisdemo.domain.entity
 
+import icu.guodapeng.mybatisdemo.annotations.PoKo
+
+@PoKo
 data class UserBase(
     var id: Long? = null,
     var account: String? = null,

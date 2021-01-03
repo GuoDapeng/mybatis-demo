@@ -4,7 +4,9 @@
 
 这是一个测试 mybatis 的项目。
 
-`application.properties` `lazy-loading-enabled=true` results in an error
+1. 延迟加载出现错误
+
+`application.properties` `lazy-loading-enabled=true` cause an error
 
 ```
 nested exception is org.apache.ibatis.executor.ExecutorException: Error creating lazy proxy.  Cause: java.lang.RuntimeException: icu.guodapeng.mybatisdemo.domain.entity.UserBase is final
@@ -16,6 +18,10 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 
 [Test](./src/test/kotlin/icu/guodapeng/mybatisdemo/domain/UserRolesTests.kt)
 
+解决了方案：使用 kotlin-allopen 插件解决。与 CGLIB 的工作方式有关。
+
+![kotlin allopen](./doc/images/kotlin-allopen.png)
+
 # 延伸阅读
 
 [mybatis](https://mybatis.org/mybatis-3/zh/)
@@ -25,3 +31,7 @@ org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis
 [About mybatis-spring-boot](http://mybatis.org/spring-boot-starter/)
 
 [GitHub spring-boot-starter](https://github.com/mybatis/spring-boot-starter)
+
+我不认识这个文章的作者，但是受到了他的帮助。
+
+[kotlin 数据类 noarg和allopen插件的使用](https://blog.csdn.net/mp624183768/article/details/106822144/)
